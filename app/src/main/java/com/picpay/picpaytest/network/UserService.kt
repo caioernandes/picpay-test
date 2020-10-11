@@ -1,11 +1,11 @@
 package com.picpay.picpaytest.network
 
 import com.picpay.picpaytest.model.UserResponse
-import io.reactivex.Observable
+import retrofit2.Response
 import retrofit2.http.GET
 
-interface PicPayApiService {
+interface UserService {
 
     @GET("tests/mobdev/users")
-    fun getUsers(): Observable<List<UserResponse>>
+    suspend fun getUsers(): Response<List<UserResponse>>
 }

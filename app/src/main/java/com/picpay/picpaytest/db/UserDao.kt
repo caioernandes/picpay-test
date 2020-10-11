@@ -3,21 +3,25 @@ package com.picpay.picpaytest.db
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.picpay.picpaytest.model.User
 
 @Dao
-interface UsersDao {
+interface UserDao {
 
     @Insert
-    fun insertUser(user: User)
+    suspend fun insertUser(user: User)
 
     @Query("DELETE FROM user_table WHERE name = :userName")
-    fun deleteUser(userName: String?)
+    suspend fun deleteUser(userName: String?)
 
     @Query("DELETE FROM user_table")
-    fun deleteAllUsers()
+    suspend fun deleteAllUsers()
 
     @Query("SELECT * FROM user_table")
-    fun getFavoriteUser(): LiveData<List<User>>
+    fun getFavoriteUsers(): LiveData<List<User>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllUsers(users: List<User>)
 }

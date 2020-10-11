@@ -1,14 +1,21 @@
 package com.picpay.picpaytest.repository
 
-import com.picpay.picpaytest.db.UsersDao
-import com.picpay.picpaytest.network.PicPayApiService
+import androidx.lifecycle.LiveData
+import com.picpay.picpaytest.db.UserDao
 import com.picpay.picpaytest.model.User
+import com.picpay.picpaytest.network.UserRemoteDataSource
+import com.picpay.picpaytest.repository.mappers.toUsers
+import com.picpay.picpaytest.utils.Resource
+import com.picpay.picpaytest.utils.performGetOperation
+import javax.inject.Inject
 
-class UsersRepositoryImpl(
-    private val usersDao: UsersDao,
-    private val service: PicPayApiService
+class UsersRepositoryImpl @Inject constructor(
+    private val userDao: UserDao,
+    private val remoteDataSource: UserRemoteDataSource
 ) : UsersRepository {
-    override fun getUsers(): List<User> {
-        TODO("Not yet implemented")
-    }
+    override fun getUsers(): LiveData<Resource<List<User>>> = performGetOperation(
+        databaseQuery = { userDao.getFavoriteUsers() },
+        networkCall = { remoteDataSource.getUsers() },
+        saveCallResult = { userDao.insertAllUsers(it.toUsers()) }
+    )
 }
