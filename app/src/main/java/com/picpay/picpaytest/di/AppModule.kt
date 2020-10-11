@@ -21,12 +21,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class AppModule {
-
-    @Provides
-    @Singleton
-    fun providePicPayApiService(retrofit: Retrofit): UserService =
-        retrofit.create(UserService::class.java)
+object AppModule {
 
     @Singleton
     @Provides
@@ -37,6 +32,17 @@ class AppModule {
 
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()
+
+    @Provides
+    @Singleton
+    fun provideUserService(retrofit: Retrofit): UserService =
+        retrofit.create(UserService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideUserRemoteDataSource(
+        userService: UserService
+    ) = UserRemoteDataSource(userService)
 
     @Singleton
     @Provides
