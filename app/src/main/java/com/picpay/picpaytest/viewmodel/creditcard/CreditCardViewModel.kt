@@ -1,11 +1,11 @@
-package com.picpay.picpaytest.viewmodel
+package com.picpay.picpaytest.viewmodel.creditcard
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.picpay.picpaytest.model.CreditCard
-import com.picpay.picpaytest.repository.CreditCardRepository
+import com.picpay.picpaytest.repository.creditcard.CreditCardRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

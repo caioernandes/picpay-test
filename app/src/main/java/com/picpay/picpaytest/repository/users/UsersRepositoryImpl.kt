@@ -1,10 +1,10 @@
-package com.picpay.picpaytest.repository
+package com.picpay.picpaytest.repository.users
 
 import androidx.lifecycle.LiveData
 import com.picpay.picpaytest.db.UserDao
 import com.picpay.picpaytest.model.User
 import com.picpay.picpaytest.network.UserRemoteDataSource
-import com.picpay.picpaytest.repository.mappers.toUsers
+import com.picpay.picpaytest.model.mappers.toUsers
 import com.picpay.picpaytest.utils.Resource
 import com.picpay.picpaytest.utils.performGetOperation
 import javax.inject.Inject

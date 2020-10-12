@@ -1,4 +1,4 @@
-package com.picpay.picpaytest.repository
+package com.picpay.picpaytest.repository.users
 
 import androidx.lifecycle.LiveData
 import com.picpay.picpaytest.model.User

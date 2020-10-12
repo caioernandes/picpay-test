@@ -1,4 +1,4 @@
-package com.picpay.picpaytest.repository.mappers
+package com.picpay.picpaytest.model.mappers
 
 import com.picpay.picpaytest.model.User
 import com.picpay.picpaytest.model.UserResponse

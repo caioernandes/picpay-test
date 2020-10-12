@@ -17,8 +17,8 @@ import com.picpay.picpaytest.databinding.FragmentUsersBinding
 import com.picpay.picpaytest.model.User
 import com.picpay.picpaytest.ui.users.adapter.UsersAdapter
 import com.picpay.picpaytest.utils.*
-import com.picpay.picpaytest.viewmodel.CreditCardViewModel
-import com.picpay.picpaytest.viewmodel.UsersViewModel
+import com.picpay.picpaytest.viewmodel.creditcard.CreditCardViewModel
+import com.picpay.picpaytest.viewmodel.users.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.picpay.picpaytest.repository
+package com.picpay.picpaytest.repository.creditcard
 
 import androidx.lifecycle.LiveData
 import com.picpay.picpaytest.db.CreditCardDao

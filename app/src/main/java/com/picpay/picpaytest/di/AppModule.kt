@@ -8,10 +8,10 @@ import com.picpay.picpaytest.db.CreditCardDao
 import com.picpay.picpaytest.db.UserDao
 import com.picpay.picpaytest.network.UserRemoteDataSource
 import com.picpay.picpaytest.network.UserService
-import com.picpay.picpaytest.repository.CreditCardRepository
-import com.picpay.picpaytest.repository.CreditCardRepositoryImpl
-import com.picpay.picpaytest.repository.UsersRepository
-import com.picpay.picpaytest.repository.UsersRepositoryImpl
+import com.picpay.picpaytest.repository.creditcard.CreditCardRepository
+import com.picpay.picpaytest.repository.creditcard.CreditCardRepositoryImpl
+import com.picpay.picpaytest.repository.users.UsersRepository
+import com.picpay.picpaytest.repository.users.UsersRepositoryImpl
 import com.picpay.picpaytest.utils.Constants
 import dagger.Module
 import dagger.Provides
