@@ -13,16 +13,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.picpaytest.R
-import com.picpay.picpaytest.databinding.FragmentUsersFragmentBinding
+import com.picpay.picpaytest.databinding.FragmentUsersBinding
 import com.picpay.picpaytest.utils.*
 import com.picpay.picpaytest.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQueryTextListener {
 
-    private var binding: FragmentUsersFragmentBinding by autoCleared()
+    private var binding: FragmentUsersBinding by autoCleared()
     private val viewModel: UsersViewModel by viewModels()
     private val adapter by lazy {
         UsersAdapter(this)
@@ -32,7 +31,7 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentUsersFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentUsersBinding.inflate(inflater, container, false)
         return binding.root
     }
 

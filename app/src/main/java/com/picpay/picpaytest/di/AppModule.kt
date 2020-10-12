@@ -52,7 +52,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideCharacterDao(db: AppDatabase) = db.usersDao()
+    fun provideUserDao(db: AppDatabase) = db.usersDao()
+
+    @Singleton
+    @Provides
+    fun provideCreditCardDao(db: AppDatabase) = db.creditCardDao()
 
     @Singleton
     @Provides

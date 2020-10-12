@@ -9,7 +9,7 @@
         android:id="@+id/usersFragment"
         android:name="com.picpay.picpaytest.ui.users.UsersFragment"
         android:label="@string/contacts"
-        tools:layout="@layout/fragment_users_fragment">
+        tools:layout="@layout/fragment_users">
 
         <action
             android:id="@+id/action_usersFragment_to_registerCardPresentation"

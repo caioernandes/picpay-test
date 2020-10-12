@@ -10,6 +10,7 @@ import com.picpay.picpaytest.model.User
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun usersDao(): UserDao
+    abstract fun creditCardDao(): CreditCardDao
 
     companion object {
         @Volatile
