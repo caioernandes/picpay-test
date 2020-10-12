@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.picpay.picpaytest.databinding.ItemUserBinding
 import com.picpay.picpaytest.model.User
+import java.util.*
+import kotlin.collections.ArrayList
 
 class UsersAdapter(private val listener: UserItemListener) :
     RecyclerView.Adapter<UserViewHolder>() {
@@ -16,11 +18,32 @@ class UsersAdapter(private val listener: UserItemListener) :
         fun onClickedUser(userId: Int)
     }
 
-    private val items = ArrayList<User>()
+    private val usersList = ArrayList<User>()
+    private var usersListBackup: List<User>? = null
 
     fun setItems(items: ArrayList<User>) {
-        this.items.clear()
-        this.items.addAll(items)
+        this.usersList.clear()
+        this.usersList.addAll(items)
+        this.usersListBackup = items
+        notifyDataSetChanged()
+    }
+
+    fun filter(searchText: String) {
+        val searchTextLowerCase = searchText.toLowerCase(Locale.getDefault())
+        usersList.clear()
+        if (searchTextLowerCase.isEmpty()) {
+            usersListBackup?.let {
+                usersList.addAll(it)
+            }
+        } else {
+            usersListBackup?.let { users ->
+                for (item in users) {
+                    if (item.name.toLowerCase(Locale.getDefault()).contains(searchTextLowerCase)) {
+                        usersList.add(item)
+                    }
+                }
+            }
+        }
         notifyDataSetChanged()
     }
 
@@ -30,10 +53,10 @@ class UsersAdapter(private val listener: UserItemListener) :
         return UserViewHolder(binding, listener)
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = usersList.size
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) =
-        holder.bind(items[position])
+        holder.bind(usersList[position])
 }
 
 class UserViewHolder(

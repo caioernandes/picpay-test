@@ -3,4 +3,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="contacts">Contatos</string>
     <string name="register_card">Cadastrar cartão</string>
+    <string name="search_placeholder">A quem você deseja pagar?</string>
 </resources>

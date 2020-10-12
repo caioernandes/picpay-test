@@ -4,6 +4,7 @@
     <dimen name="default_margin">12dp</dimen>
     <dimen name="medium_margin">16dp</dimen>
     <dimen name="big_margin">20dp</dimen>
+    <dimen name="x_big_margin">32dp</dimen>
 
     <dimen name="size_image">52dp</dimen>
     <dimen name="medium_text_size">18sp</dimen>
