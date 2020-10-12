@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.picpay.picpaytest.model.CreditCard
 import com.picpay.picpaytest.model.User
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, CreditCard::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun usersDao(): UserDao
@@ -24,9 +25,8 @@ abstract class AppDatabase : RoomDatabase() {
             }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "users")
+            Room.databaseBuilder(appContext, AppDatabase::class.java, "picpay_db")
                 .fallbackToDestructiveMigration()
                 .build()
     }
-
 }

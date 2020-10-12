@@ -4,9 +4,12 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.picpay.picpaytest.db.AppDatabase
+import com.picpay.picpaytest.db.CreditCardDao
 import com.picpay.picpaytest.db.UserDao
 import com.picpay.picpaytest.network.UserRemoteDataSource
 import com.picpay.picpaytest.network.UserService
+import com.picpay.picpaytest.repository.CreditCardRepository
+import com.picpay.picpaytest.repository.CreditCardRepositoryImpl
 import com.picpay.picpaytest.repository.UsersRepository
 import com.picpay.picpaytest.repository.UsersRepositoryImpl
 import com.picpay.picpaytest.utils.Constants
@@ -60,8 +63,14 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(
+    fun provideRepositoryUser(
         remoteDataSource: UserRemoteDataSource,
         localDataSource: UserDao
     ): UsersRepository = UsersRepositoryImpl(localDataSource, remoteDataSource)
+
+    @Singleton
+    @Provides
+    fun provideRepositoryCreditCard(
+        localDataSource: CreditCardDao
+    ): CreditCardRepository = CreditCardRepositoryImpl(localDataSource)
 }

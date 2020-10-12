@@ -1,4 +1,4 @@
-package com.picpay.picpaytest.ui.users
+package com.picpay.picpaytest.ui.users.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +15,7 @@ class UsersAdapter(private val listener: UserItemListener) :
     RecyclerView.Adapter<UserViewHolder>() {
 
     interface UserItemListener {
-        fun onClickedUser(userId: Int)
+        fun onClickedUser(user: User)
     }
 
     private val usersList = ArrayList<User>()
@@ -82,6 +82,6 @@ class UserViewHolder(
     }
 
     override fun onClick(v: View?) {
-        listener.onClickedUser(user.id)
+        listener.onClickedUser(user)
     }
 }
