@@ -126,9 +126,11 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
         })
     }
 
-    override fun onQueryTextSubmit(query: String?): Boolean = false
+    override fun onQueryTextSubmit(query: String?): Boolean = searchFilter(query)
 
-    override fun onQueryTextChange(query: String?): Boolean {
+    override fun onQueryTextChange(query: String?): Boolean = searchFilter(query)
+
+    private fun searchFilter(query: String?): Boolean {
         query?.let { adapter.filter(it) }
         return false
     }

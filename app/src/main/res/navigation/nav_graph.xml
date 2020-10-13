@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/registerCard"
         android:name="com.picpay.picpaytest.ui.registercard.RegisterCardFragment"
-        android:label="@string/register_card"
+        android:label="@string/credit_card"
         tools:layout="@layout/fragment_register_card">
 
         <action
