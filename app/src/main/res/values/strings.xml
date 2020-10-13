@@ -3,5 +3,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="contacts">Contatos</string>
     <string name="register_card">Cadastrar cartão</string>
+    <string name="credit_card">Cartão de crédito</string>
     <string name="search_placeholder">A quem você deseja pagar?</string>
+    <string name="title_register_credit_card">Cadastre um cartão de crédito</string>
+    <string name="description_register_credit_card">Para fazer pagamentos para outras pessoas você precisa cadastrar um cartão de crédito pessoal.</string>
 </resources>

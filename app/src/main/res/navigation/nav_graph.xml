@@ -23,6 +23,7 @@
 
     <fragment
         android:id="@+id/registerCardPresentation"
+        android:label="@string/credit_card"
         android:name="com.picpay.picpaytest.ui.registercard.RegisterCardPresentationFragment"
         tools:layout="@layout/fragment_register_card_presentation">
 

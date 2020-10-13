@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.FragmentUsersBinding
@@ -27,6 +28,15 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
     private var binding: FragmentUsersBinding by autoCleared()
     private val viewModelUsers: UsersViewModel by viewModels()
     private val viewModelCreditCard: CreditCardViewModel by viewModels()
+
+    private val options = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
+    }
 
     private val adapter by lazy {
         UsersAdapter(this)
@@ -100,7 +110,8 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
             if (creditCard.isEmpty()) {
                 findNavController().navigate(
                     R.id.action_usersFragment_to_registerCardPresentation,
-                    bundleOf("user" to user)
+                    bundleOf("user" to user),
+                    options
                 )
             } else {
                 val bundle = Bundle()
@@ -108,7 +119,8 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
                 bundle.putParcelable("user", user)
                 findNavController().navigate(
                     R.id.action_usersFragment_to_paymentFragment,
-                    bundle
+                    bundle,
+                    options
                 )
             }
         })

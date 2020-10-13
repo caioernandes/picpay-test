@@ -10,6 +10,5 @@ import com.picpay.picpaytest.utils.Resource
 class UsersViewModel @ViewModelInject constructor(
     repository: UsersRepository
 ) : ViewModel() {
-
     val users: LiveData<Resource<List<User>>> = repository.getUsers()
 }
