@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.picpay.picpaytest.ui.users.UsersFragment"
+        android:name="com.picpay.picpaytest.features.users.view.UsersFragment"
         android:label="@string/contacts"
         tools:layout="@layout/fragment_users">
 
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/registerCardPresentation"
         android:label="@string/credit_card"
-        android:name="com.picpay.picpaytest.ui.registercard.RegisterCardPresentationFragment"
+        android:name="com.picpay.picpaytest.features.creditcard.view.RegisterCardPresentationFragment"
         tools:layout="@layout/fragment_register_card_presentation">
 
         <action
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/registerCard"
-        android:name="com.picpay.picpaytest.ui.registercard.RegisterCardFragment"
+        android:name="com.picpay.picpaytest.features.creditcard.view.RegisterCardFragment"
         android:label="@string/credit_card"
         tools:layout="@layout/fragment_register_card">
 
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.picpay.picpaytest.ui.payment.PaymentFragment"
+        android:name="com.picpay.picpaytest.features.payment.view.PaymentFragment"
         tools:layout="@layout/fragment_payment">
 
         <action

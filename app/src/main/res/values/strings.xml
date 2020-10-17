@@ -7,4 +7,5 @@
     <string name="search_placeholder">A quem você deseja pagar?</string>
     <string name="title_register_credit_card">Cadastre um cartão de crédito</string>
     <string name="description_register_credit_card">Para fazer pagamentos para outras pessoas você precisa cadastrar um cartão de crédito pessoal.</string>
+    <string name="card_name">Nome do cartão</string>
 </resources>

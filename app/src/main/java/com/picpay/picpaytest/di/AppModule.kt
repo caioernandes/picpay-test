@@ -4,14 +4,18 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.picpay.picpaytest.db.AppDatabase
-import com.picpay.picpaytest.db.CreditCardDao
-import com.picpay.picpaytest.db.UserDao
-import com.picpay.picpaytest.network.UserRemoteDataSource
-import com.picpay.picpaytest.network.UserService
-import com.picpay.picpaytest.repository.creditcard.CreditCardRepository
-import com.picpay.picpaytest.repository.creditcard.CreditCardRepositoryImpl
-import com.picpay.picpaytest.repository.users.UsersRepository
-import com.picpay.picpaytest.repository.users.UsersRepositoryImpl
+import com.picpay.picpaytest.features.creditcard.repository.dao.CreditCardDao
+import com.picpay.picpaytest.features.users.repository.dao.UserDao
+import com.picpay.picpaytest.features.users.repository.service.UserRemoteDataSource
+import com.picpay.picpaytest.features.users.repository.service.UserService
+import com.picpay.picpaytest.features.creditcard.repository.CreditCardRepository
+import com.picpay.picpaytest.features.creditcard.repository.CreditCardRepositoryImpl
+import com.picpay.picpaytest.features.payment.repository.PaymentRepository
+import com.picpay.picpaytest.features.payment.repository.PaymentRepositoryImpl
+import com.picpay.picpaytest.features.payment.repository.service.PaymentRemoteDataSource
+import com.picpay.picpaytest.features.payment.repository.service.PaymentService
+import com.picpay.picpaytest.features.users.repository.UsersRepository
+import com.picpay.picpaytest.features.users.repository.UsersRepositoryImpl
 import com.picpay.picpaytest.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -41,17 +45,28 @@ object AppModule {
     fun provideUserService(retrofit: Retrofit): UserService =
         retrofit.create(UserService::class.java)
 
+    @Provides
+    @Singleton
+    fun providePaymentService(retrofit: Retrofit): PaymentService =
+        retrofit.create(PaymentService::class.java)
+
     @Singleton
     @Provides
     fun provideUserRemoteDataSource(
         userService: UserService
-    ) = UserRemoteDataSource(userService)
+    ): UserRemoteDataSource = UserRemoteDataSource(userService)
+
+    @Singleton
+    @Provides
+    fun providePaymentRemoteDataSource(
+        paymentService: PaymentService
+    ): PaymentRemoteDataSource = PaymentRemoteDataSource(paymentService)
 
     @Singleton
     @Provides
     fun provideDatabase(
         @ApplicationContext appContext: Context
-    ) = AppDatabase.getDatabase(appContext)
+    ): AppDatabase = AppDatabase.getDatabase(appContext)
 
     @Singleton
     @Provides
@@ -73,4 +88,10 @@ object AppModule {
     fun provideRepositoryCreditCard(
         localDataSource: CreditCardDao
     ): CreditCardRepository = CreditCardRepositoryImpl(localDataSource)
+
+    @Singleton
+    @Provides
+    fun providePaymentRepository(
+        remoteDataSource: PaymentRemoteDataSource
+    ): PaymentRepository = PaymentRepositoryImpl(remoteDataSource)
 }
