@@ -1,28 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".features.creditcard.view.RegisterCardFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEditTextCardNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/big_margin"
-        android:layout_marginEnd="@dimen/big_margin"
-        android:hint="@string/card_name"
-        android:textColorHint="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEditTextCardNumber"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/textColorDescription" />
+            android:layout_marginStart="@dimen/medium_margin_all_sides"
+            android:layout_marginTop="@dimen/register_card_fields_margin_top"
+            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:hint="@string/text_field_card_name"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:hintTextColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/textColorDescription" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEditTextCardholderName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin_all_sides"
+            android:layout_marginTop="@dimen/register_card_fields_margin_top"
+            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:hint="@string/text_field_cardholder_name"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:hintTextColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputEditTextCardNumber">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/textColorDescription" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEditTextDueDate"
+            android:layout_width="@dimen/register_card_small_field_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin_all_sides"
+            android:layout_marginTop="@dimen/register_card_fields_margin_top"
+            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:hint="@string/text_field_due_date"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:hintTextColor="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputEditTextCardholderName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/textColorDescription" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEditTextCvv"
+            android:layout_width="@dimen/register_card_small_field_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin_all_sides"
+            android:layout_marginTop="@dimen/register_card_fields_margin_top"
+            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:hint="@string/text_field_cvv"
+            android:textColorHint="@color/colorPlaceHolder"
+            app:hintTextColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputEditTextCardholderName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/textColorDescription" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButtonRegisterCard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_button_height"
+            android:layout_marginStart="@dimen/default_margin_top"
+            android:layout_marginEnd="@dimen/default_margin_top"
+            android:layout_marginBottom="@dimen/default_margin_top"
+            android:text="@string/text_button_save"
+            android:theme="@style/MatButton"
+            app:cornerRadius="@dimen/corner_radius_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
