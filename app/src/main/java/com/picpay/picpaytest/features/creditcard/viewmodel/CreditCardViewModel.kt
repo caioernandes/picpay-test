@@ -4,8 +4,10 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.picpay.picpaytest.features.creditcard.repository.CreditCardRepository
+import androidx.lifecycle.viewModelScope
 import com.picpay.picpaytest.features.creditcard.model.CreditCard
+import com.picpay.picpaytest.features.creditcard.model.CreditCardInsert
+import com.picpay.picpaytest.features.creditcard.repository.CreditCardRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,14 +21,26 @@ class CreditCardViewModel @ViewModelInject constructor(
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + viewModelJob
 
-    private val creditCardList = MutableLiveData<List<CreditCard>>()
-    val creditCard: LiveData<List<CreditCard>> = creditCardList
     private val viewModelJob = Job()
 
-    fun loadCreditCard() {
-        launch {
-            val result = repository.getCreditCard()
-            creditCardList.value = result.value ?: emptyList()
+    private var _creditCardLiveData = MutableLiveData<CreditCard>()
+    val creditCardLiveData: LiveData<CreditCard>? = _creditCardLiveData
+
+    private var _userInserted = MutableLiveData<Boolean>()
+    val userInserted: LiveData<Boolean> = _userInserted
+
+    fun loadCreditCard(cardNumber: String) {
+        viewModelScope.launch {
+            _creditCardLiveData.value = repository.getCreditCard(cardNumber).value ?: CreditCard()
+        }
+    }
+
+    fun insertCreditCard(creditCard: CreditCardInsert) {
+        viewModelScope.launch {
+            val userId = repository.insertCreditCard(creditCard)
+            if (userId > 0) {
+                _userInserted.value = true
+            }
         }
     }
 

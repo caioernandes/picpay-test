@@ -1,20 +1,18 @@
 package com.picpay.picpaytest.features.creditcard.repository.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.picpay.picpaytest.features.creditcard.model.CreditCard
+import com.picpay.picpaytest.features.creditcard.model.CreditCardInsert
 
 @Dao
 interface CreditCardDao {
 
-    @Query("SELECT * FROM credit_card_table")
-    fun getCreditCard(): LiveData<List<CreditCard>>
+    @Query("SELECT * FROM credit_card_table WHERE cardNumber = :cardNumber LIMIT 1")
+    fun getCreditCard(cardNumber: String): LiveData<CreditCard>
 
-    @Insert
-    fun insertCreditCard(creditCard: CreditCard)
+    @Insert(entity = CreditCard::class)
+    fun insertCreditCard(creditCard: CreditCardInsert): Long
 
     @Update
     fun updateCreditCard(creditCard: CreditCard)

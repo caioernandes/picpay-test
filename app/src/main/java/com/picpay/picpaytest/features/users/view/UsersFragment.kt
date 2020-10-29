@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,7 +65,7 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
     }
 
     private fun observeUsers() {
-        viewModelUsers.users.observe(viewLifecycleOwner, {
+        viewModelUsers.users.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBarUsers.gone()
@@ -79,7 +80,7 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
                 ).show()
                 Resource.Status.LOADING -> binding.progressBarUsers.visible()
             }
-        })
+        }
     }
 
     private fun bindListeners() {
@@ -101,13 +102,17 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
     }
 
     override fun onClickedUser(user: User) {
-        viewModelCreditCard.loadCreditCard()
+        val cardNumber = SharedPreferences.getStringSharedPref(
+            requireActivity(),
+            getString(R.string.card_number_user_key)
+        )
+        viewModelCreditCard.loadCreditCard(cardNumber)
         observeCreditCard(user)
     }
 
     private fun observeCreditCard(user: User) {
-        viewModelCreditCard.creditCard.observe(viewLifecycleOwner, { creditCard ->
-            if (creditCard.isEmpty()) {
+        viewModelCreditCard.creditCardLiveData?.observe(viewLifecycleOwner) { creditCard ->
+            if (creditCard.cardNumber.isEmpty()) {
                 findNavController().navigate(
                     R.id.action_usersFragment_to_registerCardPresentation,
                     bundleOf("user" to user),
@@ -115,7 +120,7 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
                 )
             } else {
                 val bundle = Bundle()
-                bundle.putParcelable("creditCard", creditCard.first())
+                bundle.putParcelable("creditCard", creditCard)
                 bundle.putParcelable("user", user)
                 findNavController().navigate(
                     R.id.action_usersFragment_to_paymentFragment,
@@ -123,7 +128,7 @@ class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQu
                     options
                 )
             }
-        })
+        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean = searchFilter(query)

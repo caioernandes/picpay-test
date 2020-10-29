@@ -12,4 +12,7 @@
     <string name="text_field_due_date">Vencimento</string>
     <string name="text_field_cvv">CVV</string>
     <string name="text_button_save">Salvar</string>
+    <string name="error_credit_card">Problema ao carregar os dados do cartão de crédito.</string>
+    <string name="saved_high_score_key">0</string>
+    <string name="card_number_user_key">card_number_user_key</string>
 </resources>

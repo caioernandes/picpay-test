@@ -1,7 +1,12 @@
 package com.picpay.picpaytest.utils
 
+import android.app.Activity
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
+import com.google.android.material.textfield.TextInputEditText
 
 fun View.visible() {
     this.visibility = View.VISIBLE
@@ -34,4 +39,21 @@ private fun <V : View?> gatherChildrenByClass(
         }
     }
     return childrenFound
+}
+
+fun TextInputEditText.toText() = this.text?.toString().orEmpty()
+
+fun TextInputEditText.toTextInt() = this.text?.toString()?.toInt() ?: 0
+
+fun Fragment.hideKeyboard() {
+    view?.let { activity?.hideKeyboard(it) }
+}
+
+fun Activity.hideKeyboard() {
+    hideKeyboard(currentFocus ?: View(this))
+}
+
+fun Context.hideKeyboard(view: View) {
+    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
