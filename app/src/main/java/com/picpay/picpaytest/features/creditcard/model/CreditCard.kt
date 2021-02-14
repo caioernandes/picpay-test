@@ -6,17 +6,9 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "credit_card_table")
+@Entity
 data class CreditCard(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val cardNumber: String = "",
-    val bearer: String = "",
-    val cvv: Int = 0,
-    val expiryDate: String = ""
-): Parcelable
-
-@Parcelize
-data class CreditCardInsert(
     val cardNumber: String = "",
     val bearer: String = "",
     val cvv: Int = 0,

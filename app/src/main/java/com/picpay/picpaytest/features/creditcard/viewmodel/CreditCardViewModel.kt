@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.picpay.picpaytest.features.creditcard.model.CreditCard
-import com.picpay.picpaytest.features.creditcard.model.CreditCardInsert
 import com.picpay.picpaytest.features.creditcard.repository.CreditCardRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +22,7 @@ class CreditCardViewModel constructor(
     private val viewModelJob = Job()
 
     private var _creditCardLiveData = MutableLiveData<CreditCard>()
-    val creditCardLiveData: LiveData<CreditCard>? = _creditCardLiveData
+    val creditCardLiveData: LiveData<CreditCard> = _creditCardLiveData
 
     private var _userInserted = MutableLiveData<Boolean>()
     val userInserted: LiveData<Boolean> = _userInserted
@@ -34,7 +33,7 @@ class CreditCardViewModel constructor(
         }
     }
 
-    fun insertCreditCard(creditCard: CreditCardInsert) {
+    fun insertCreditCard(creditCard: CreditCard) {
         viewModelScope.launch {
             val userId = repository.insertCreditCard(creditCard)
             if (userId > 0) {

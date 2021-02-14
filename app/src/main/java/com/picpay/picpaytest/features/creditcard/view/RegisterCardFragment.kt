@@ -7,32 +7,32 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.FragmentRegisterCardBinding
-import com.picpay.picpaytest.features.creditcard.model.CreditCardInsert
+import com.picpay.picpaytest.features.creditcard.model.CreditCard
 import com.picpay.picpaytest.features.creditcard.viewmodel.CreditCardViewModel
 import com.picpay.picpaytest.features.users.model.User
 import com.picpay.picpaytest.utils.SharedPreferences
 import com.picpay.picpaytest.utils.autoCleared
 import com.picpay.picpaytest.utils.toText
 import com.picpay.picpaytest.utils.toTextInt
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterCardFragment : Fragment() {
 
     private var binding: FragmentRegisterCardBinding by autoCleared()
-    private val creditCardViewModel: CreditCardViewModel by viewModels()
+    private val creditCardViewModel: CreditCardViewModel by viewModel()
 
     private var user: User? = null
-    private lateinit var creditCard: CreditCardInsert
+    private lateinit var creditCard: CreditCard
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         user = arguments?.getParcelable("user")
         binding = FragmentRegisterCardBinding.inflate(inflater, container, false)
 
@@ -71,7 +71,7 @@ class RegisterCardFragment : Fragment() {
     }
 
     private fun setupInsertCreditCard() {
-        creditCard = CreditCardInsert(
+        creditCard = CreditCard(
             cardNumber = binding.textInputEditTextCardNumber.toText(),
             bearer = binding.textInputEditTextCardholderName.toText(),
             cvv = binding.textInputEditTextCvv.toTextInt(),
@@ -92,7 +92,7 @@ class RegisterCardFragment : Fragment() {
                 creditCardViewModel.loadCreditCard(creditCard.cardNumber)
             }
         }
-        creditCardViewModel.creditCardLiveData?.observe(viewLifecycleOwner) {
+        creditCardViewModel.creditCardLiveData.observe(viewLifecycleOwner) {
             if (it.cardNumber.isNotEmpty()) {
                 redirectPayment()
             } else {
