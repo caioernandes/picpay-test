@@ -6,9 +6,8 @@ import com.picpay.picpaytest.features.creditcard.model.CreditCardInsert
 import com.picpay.picpaytest.features.creditcard.repository.dao.CreditCardDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class CreditCardRepositoryImpl @Inject constructor(
+class CreditCardRepositoryImpl constructor(
     private val creditCardDao: CreditCardDao
 ) : CreditCardRepository {
 

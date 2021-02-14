@@ -1,6 +1,5 @@
 package com.picpay.picpaytest.features.creditcard.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +13,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class CreditCardViewModel @ViewModelInject constructor(
+class CreditCardViewModel constructor(
     private val repository: CreditCardRepository
 ): ViewModel(), CoroutineScope {
 

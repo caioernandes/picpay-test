@@ -4,9 +4,8 @@ import com.picpay.picpaytest.features.payment.model.PaymentRequest
 import com.picpay.picpaytest.features.payment.repository.service.PaymentRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class PaymentRepositoryImpl @Inject constructor(
+class PaymentRepositoryImpl constructor(
     private val remoteDataSource: PaymentRemoteDataSource
 ) : PaymentRepository {
 

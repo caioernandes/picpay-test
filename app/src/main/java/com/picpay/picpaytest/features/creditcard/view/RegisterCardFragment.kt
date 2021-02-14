@@ -13,14 +13,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.FragmentRegisterCardBinding
-import com.picpay.picpaytest.features.creditcard.model.CreditCard
 import com.picpay.picpaytest.features.creditcard.model.CreditCardInsert
 import com.picpay.picpaytest.features.creditcard.viewmodel.CreditCardViewModel
 import com.picpay.picpaytest.features.users.model.User
-import com.picpay.picpaytest.utils.*
-import dagger.hilt.android.AndroidEntryPoint
+import com.picpay.picpaytest.utils.SharedPreferences
+import com.picpay.picpaytest.utils.autoCleared
+import com.picpay.picpaytest.utils.toText
+import com.picpay.picpaytest.utils.toTextInt
 
-@AndroidEntryPoint
 class RegisterCardFragment : Fragment() {
 
     private var binding: FragmentRegisterCardBinding by autoCleared()

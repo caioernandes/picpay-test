@@ -12,9 +12,7 @@ import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.FragmentRegisterCardPresentationBinding
 import com.picpay.picpaytest.features.users.model.User
 import com.picpay.picpaytest.utils.autoCleared
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class RegisterCardPresentationFragment : Fragment() {
 
     private var binding: FragmentRegisterCardPresentationBinding by autoCleared()

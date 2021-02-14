@@ -2,9 +2,8 @@ package com.picpay.picpaytest.features.payment.repository.service
 
 import com.picpay.picpaytest.features.payment.model.PaymentRequest
 import com.picpay.picpaytest.utils.BaseDataSource
-import javax.inject.Inject
 
-class PaymentRemoteDataSource @Inject constructor(
+class PaymentRemoteDataSource constructor(
     private val service: PaymentService
 ) : BaseDataSource() {
 

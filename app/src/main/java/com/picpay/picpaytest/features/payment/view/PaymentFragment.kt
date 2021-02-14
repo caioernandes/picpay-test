@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.picpay.picpaytest.databinding.FragmentPaymentBinding
 import com.picpay.picpaytest.utils.autoCleared
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class PaymentFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
 
     private var binding: FragmentPaymentBinding by autoCleared()

@@ -5,30 +5,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.EditText
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.FragmentUsersBinding
-import com.picpay.picpaytest.features.users.view.adapter.UsersAdapter
-import com.picpay.picpaytest.utils.*
 import com.picpay.picpaytest.features.creditcard.viewmodel.CreditCardViewModel
 import com.picpay.picpaytest.features.users.model.User
+import com.picpay.picpaytest.features.users.view.adapter.UsersAdapter
 import com.picpay.picpaytest.features.users.viewmodel.UsersViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.picpay.picpaytest.utils.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class UsersFragment : Fragment(), UsersAdapter.UserItemListener, SearchView.OnQueryTextListener {
 
     private var binding: FragmentUsersBinding by autoCleared()
-    private val viewModelUsers: UsersViewModel by viewModels()
-    private val viewModelCreditCard: CreditCardViewModel by viewModels()
+    private val viewModelUsers: UsersViewModel by viewModel()
+    private val viewModelCreditCard: CreditCardViewModel by viewModel()
 
     private val options = navOptions {
         anim {

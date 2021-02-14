@@ -1,6 +1,5 @@
 package com.picpay.picpaytest.features.payment.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +12,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class PaymentViewModel @ViewModelInject constructor(
+class PaymentViewModel constructor(
     private val paymentRepository: PaymentRepository
 ) : ViewModel(), CoroutineScope {
 

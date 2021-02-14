@@ -1,15 +1,14 @@
 package com.picpay.picpaytest.features.users.repository
 
 import androidx.lifecycle.LiveData
-import com.picpay.picpaytest.features.users.repository.dao.UserDao
 import com.picpay.picpaytest.features.users.model.User
 import com.picpay.picpaytest.features.users.model.mappers.toUsers
+import com.picpay.picpaytest.features.users.repository.dao.UserDao
 import com.picpay.picpaytest.features.users.repository.service.UserRemoteDataSource
 import com.picpay.picpaytest.utils.Resource
 import com.picpay.picpaytest.utils.performGetOperation
-import javax.inject.Inject
 
-class UsersRepositoryImpl @Inject constructor(
+class UsersRepositoryImpl constructor(
     private val userDao: UserDao,
     private val remoteDataSource: UserRemoteDataSource
 ) : UsersRepository {

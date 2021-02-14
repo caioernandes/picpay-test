@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'koin'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     viewBinding {
         enabled = true
@@ -52,14 +52,15 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.android.support:multidex:1.0.3'
 
-    // Hilt
-    def hilt = "2.28.1-alpha"
-    def hiltViewModel = "1.0.0-alpha02"
-    implementation "com.google.dagger:hilt-android:$hilt"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltViewModel"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt"
-    kapt "androidx.hilt:hilt-compiler:$hiltViewModel"
+    //Koin
+    def koin_version = "2.2.2"
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-core-ext:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+    kapt "org.koin:koin-android:$koin_version"
 
     // Retrofit
     def retrofit = "2.9.0"
