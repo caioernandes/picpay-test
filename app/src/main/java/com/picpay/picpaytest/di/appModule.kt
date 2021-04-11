@@ -1,3 +1,11 @@
 package com.picpay.picpaytest.di
 
-val appModule = listOf(viewModelModule, networkModule, databaseModule, remoteDataSourceModule, repositoryModule)
+object MainInjection {
+    val appModule = listOf(
+        viewModelModule,
+        networkModule,
+        databaseModule,
+        remoteDataSourceModule,
+        repositoryModule
+    )
+}

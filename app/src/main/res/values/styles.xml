@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -18,11 +18,25 @@
     </style>
 
     <style name="MatButton" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/textColorDescription</item>
+        <item name="colorOnSurface">@color/colorAccent</item>
+        <item name="android:textColor">@color/textColorDescription</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">sans-serif</item>
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorPrimary">@color/colorAccent</item>
-        <item name="colorOnSurface">@android:color/holo_orange_light</item>
+        <item name="cornerRadius">@dimen/corner_radius_button</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Theme.MaterialComponents">
+        <item name="android:textColorHint">@color/colorPlaceHolder</item>
+        <item name="hintTextColor">@color/colorAccent</item>
+    </style>
+
+    <style name="TextInputEditTextStyle" parent="Theme.MaterialComponents">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/textColorDescription</item>
+        <item name="android:textCursorDrawable">@color/colorAccent</item>
     </style>
 
 </resources>

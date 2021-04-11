@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="20dp"
+        app:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorToolbar">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/receipt_payment"
+                android:textColor="@color/textColorDescription"
+                android:textSize="17sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageViewAvatarContactReceiptPayment"
+        android:layout_width="@dimen/width_image_credit_card"
+        android:layout_height="@dimen/width_image_credit_card"
+        android:layout_marginTop="@dimen/dimensOf20dp"
+        android:layout_marginBottom="@dimen/dimensOf12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutBottomSheet"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewUserNameContactReceiptPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimensOf16dp"
+        android:layout_marginTop="@dimen/dimensOf12dp"
+        android:layout_marginEnd="@dimen/dimensOf16dp"
+        android:ellipsize="end"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimensOf18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatImageViewAvatarContactReceiptPayment"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageViewAvatarContactReceiptPayment"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageViewAvatarContactReceiptPayment"
+        tools:text="aliceromero" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewDateTimeReceiptPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimensOf16dp"
+        android:layout_marginTop="@dimen/dimensOf8dp"
+        android:layout_marginEnd="@dimen/dimensOf16dp"
+        android:ellipsize="end"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/dimensOf14sp"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewUserNameContactReceiptPayment"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextViewUserNameContactReceiptPayment"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewUserNameContactReceiptPayment"
+        tools:text="15/12/2022 às 16:34" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewNumberTransactionReceiptPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimensOf16dp"
+        android:layout_marginTop="@dimen/dimensOf8dp"
+        android:layout_marginEnd="@dimen/dimensOf16dp"
+        android:alpha="0.6"
+        android:ellipsize="end"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/dimensOf12sp"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewDateTimeReceiptPayment"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextViewDateTimeReceiptPayment"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewDateTimeReceiptPayment"
+        tools:text="Transação: 230010" />
+
+    <View
+        android:id="@+id/divisorOne"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/dimensOf20dp"
+        android:layout_marginTop="@dimen/dimensOf24dp"
+        android:layout_marginEnd="@dimen/dimensOf20dp"
+        android:background="@color/colorDivisor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewNumberTransactionReceiptPayment" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewInfoCreditCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimensOf8dp"
+        android:ellipsize="end"
+        android:textColor="@color/textColorDescription"
+        android:textSize="@dimen/dimensOf14sp"
+        app:layout_constraintStart_toStartOf="@+id/divisorOne"
+        app:layout_constraintTop_toBottomOf="@+id/divisorOne"
+        app:layout_goneMarginTop="@dimen/dimensOf12dp"
+        tools:text="Cartão Master 1234" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewValueCreditCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimensOf8dp"
+        android:ellipsize="end"
+        android:textColor="@color/textColorDescription"
+        android:textSize="@dimen/dimensOf14sp"
+        app:layout_constraintEnd_toEndOf="@+id/divisorOne"
+        app:layout_constraintTop_toBottomOf="@+id/divisorOne"
+        app:layout_goneMarginTop="@dimen/dimensOf12dp"
+        tools:text="R$ 16,90" />
+
+    <View
+        android:id="@+id/divisorTwo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/dimensOf20dp"
+        android:layout_marginTop="@dimen/dimensOf12dp"
+        android:layout_marginEnd="@dimen/dimensOf20dp"
+        android:background="@color/colorDivisor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewInfoCreditCard" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewLabelTotalPaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimensOf8dp"
+        android:ellipsize="end"
+        android:textColor="@color/textColorDescription"
+        android:textSize="@dimen/dimensOf18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/divisorTwo"
+        app:layout_constraintTop_toBottomOf="@+id/divisorTwo"
+        app:layout_goneMarginTop="@dimen/dimensOf12dp"
+        android:text="@string/text_total_paid" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewValueTotalPaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimensOf8dp"
+        android:ellipsize="end"
+        android:textColor="@color/textColorDescription"
+        android:textSize="@dimen/dimensOf18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/divisorTwo"
+        app:layout_constraintTop_toBottomOf="@+id/divisorTwo"
+        app:layout_goneMarginTop="@dimen/dimensOf12dp"
+        tools:text="R$ 16,90" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,8 @@ class UsersRepositoryImpl constructor(
     override fun getUsers(): LiveData<Resource<List<User>>> = performGetOperation(
         databaseQuery = { userDao.getFavoriteUsers() },
         networkCall = { remoteDataSource.getUsers() },
-        saveCallResult = { userDao.insertAllUsers(it.toUsers()) }
+        saveCallResult = {
+            userDao.insertAllUsers(it.toUsers())
+        }
     )
 }

@@ -1,6 +1,7 @@
 package com.picpay.picpaytest.main
 
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -8,6 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.ActivityMainBinding
+import com.picpay.picpaytest.features.payment.view.PaymentFragment
+import com.picpay.picpaytest.features.users.view.UsersFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

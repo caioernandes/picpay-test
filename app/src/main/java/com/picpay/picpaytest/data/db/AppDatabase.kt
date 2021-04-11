@@ -1,24 +1,21 @@
-package com.picpay.picpaytest.db
+package com.picpay.picpaytest.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.picpay.picpaytest.BuildConfig
-import com.picpay.picpaytest.features.creditcard.repository.dao.CreditCardDao
-import com.picpay.picpaytest.features.users.repository.dao.UserDao
-import com.picpay.picpaytest.features.creditcard.model.CreditCard
 import com.picpay.picpaytest.features.users.model.User
+import com.picpay.picpaytest.features.users.repository.dao.UserDao
 
 @Database(
-    entities = [User::class, CreditCard::class],
+    entities = [User::class],
     version = BuildConfig.VERSION_CODE,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun usersDao(): UserDao
-    abstract fun creditCardDao(): CreditCardDao
 
     companion object {
         @Volatile
@@ -26,13 +23,11 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDatabase =
             instance ?: synchronized(this) {
-                instance ?: buildDatabase(context).also {
-                    instance = it
-                }
+                instance ?: buildDatabase(context).also { instance = it }
             }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "picpay_db")
+            Room.databaseBuilder(appContext, AppDatabase::class.java, BuildConfig.DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
     }

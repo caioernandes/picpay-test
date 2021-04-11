@@ -15,91 +15,86 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutCardNumber"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin_all_sides"
-            android:layout_marginTop="@dimen/register_card_fields_margin_top"
-            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:layout_marginStart="@dimen/dimensOf20dp"
+            android:layout_marginTop="@dimen/dimensOf64dp"
+            android:layout_marginEnd="@dimen/dimensOf20dp"
             android:hint="@string/text_field_card_name"
-            android:textColorHint="@color/colorPlaceHolder"
-            app:hintTextColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextCardNumber"
+                style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="@color/textColorDescription" />
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutCardholderName"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin_all_sides"
-            android:layout_marginTop="@dimen/register_card_fields_margin_top"
-            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:layout_marginStart="@dimen/dimensOf20dp"
+            android:layout_marginTop="@dimen/dimensOf64dp"
+            android:layout_marginEnd="@dimen/dimensOf20dp"
             android:hint="@string/text_field_cardholder_name"
-            android:textColorHint="@color/colorPlaceHolder"
-            app:hintTextColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutCardNumber">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextCardholderName"
+                style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="@color/textColorDescription" />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutDueDate"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="@dimen/register_card_small_field_width"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin_all_sides"
-            android:layout_marginTop="@dimen/register_card_fields_margin_top"
-            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:layout_marginStart="@dimen/dimensOf20dp"
+            android:layout_marginTop="@dimen/dimensOf64dp"
+            android:layout_marginEnd="@dimen/dimensOf20dp"
             android:hint="@string/text_field_due_date"
-            android:textColorHint="@color/colorPlaceHolder"
-            app:hintTextColor="@color/colorAccent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutCardholderName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextDueData"
+                style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="@color/textColorDescription" />
+                android:inputType="date" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutCvv"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="@dimen/register_card_small_field_width"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin_all_sides"
-            android:layout_marginTop="@dimen/register_card_fields_margin_top"
-            android:layout_marginEnd="@dimen/medium_margin_all_sides"
+            android:layout_marginStart="@dimen/dimensOf20dp"
+            android:layout_marginTop="@dimen/dimensOf64dp"
+            android:layout_marginEnd="@dimen/dimensOf20dp"
             android:hint="@string/text_field_cvv"
-            android:textColorHint="@color/colorPlaceHolder"
-            app:hintTextColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutCardholderName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditTextCvv"
+                style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="@color/textColorDescription" />
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,12 +102,12 @@
             android:id="@+id/materialButtonRegisterCard"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_button_height"
-            android:layout_marginStart="@dimen/default_margin_top"
-            android:layout_marginEnd="@dimen/default_margin_top"
-            android:layout_marginBottom="@dimen/default_margin_top"
+            android:layout_marginStart="@dimen/dimensOf12dp"
+            android:layout_marginEnd="@dimen/dimensOf12dp"
+            android:layout_marginBottom="@dimen/dimensOf12dp"
             android:text="@string/text_button_save"
-            android:theme="@style/MatButton"
             app:cornerRadius="@dimen/corner_radius_button"
+            android:theme="@style/MatButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent" />

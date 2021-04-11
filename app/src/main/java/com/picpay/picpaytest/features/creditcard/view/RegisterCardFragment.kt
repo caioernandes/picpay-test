@@ -7,121 +7,90 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.FragmentRegisterCardBinding
 import com.picpay.picpaytest.features.creditcard.model.CreditCard
-import com.picpay.picpaytest.features.creditcard.viewmodel.CreditCardViewModel
 import com.picpay.picpaytest.features.users.model.User
-import com.picpay.picpaytest.utils.SharedPreferences
+import com.picpay.picpaytest.utils.Constants.CREDIT_CARD
+import com.picpay.picpaytest.utils.Constants.USER
+import com.picpay.picpaytest.data.sharedpreferences.SharedPreferences
 import com.picpay.picpaytest.utils.autoCleared
-import com.picpay.picpaytest.utils.toText
-import com.picpay.picpaytest.utils.toTextInt
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.picpay.picpaytest.extensions.toText
+import com.picpay.picpaytest.extensions.toTextInt
+import com.picpay.picpaytest.utils.NavigationUtil
 
 class RegisterCardFragment : Fragment() {
 
     private var binding: FragmentRegisterCardBinding by autoCleared()
-    private val creditCardViewModel: CreditCardViewModel by viewModel()
-
-    private var user: User? = null
-    private lateinit var creditCard: CreditCard
+    private lateinit var mUser: User
+    private lateinit var mCreditCard: CreditCard
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        user = arguments?.getParcelable("user")
+        requireArguments().apply {
+            mUser = getParcelable(USER) ?: User()
+            mCreditCard = getParcelable(CREDIT_CARD) ?: CreditCard()
+        }
         binding = FragmentRegisterCardBinding.inflate(inflater, container, false)
-
         buttonRegisterCardClickListener()
-        setupFieldsCreditCard()
-
         return binding.root
     }
 
-    private fun setupFieldsCreditCard() {
-        if (::creditCard.isInitialized) {
-            binding.textInputEditTextCardNumber.setText(
-                creditCard.cardNumber,
-                TextView.BufferType.NORMAL
-            )
-            binding.textInputEditTextCardholderName.setText(
-                creditCard.bearer,
-                TextView.BufferType.NORMAL
-            )
-            binding.textInputEditTextCvv.setText(
-                creditCard.cvv.toString(),
-                TextView.BufferType.NORMAL
-            )
-            binding.textInputEditTextDueData.setText(
-                creditCard.expiryDate,
-                TextView.BufferType.NORMAL
-            )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupFieldsCreditCard()
+    }
+
+    private fun setupFieldsCreditCard() = with(binding) {
+        mCreditCard.let {
+            textInputEditTextCardNumber.setText(it.cardNumber, TextView.BufferType.NORMAL)
+            textInputEditTextCardholderName.setText(it.bearer, TextView.BufferType.NORMAL)
+            textInputEditTextCvv.setText(it.cvv.toString(), TextView.BufferType.NORMAL)
+            textInputEditTextDueData.setText(it.expiryDate, TextView.BufferType.NORMAL)
         }
     }
 
     private fun buttonRegisterCardClickListener() {
-        binding.materialButtonRegisterCard.setOnClickListener {
-            observeInsertCreditCard()
-            setupInsertCreditCard()
-        }
+        binding.materialButtonRegisterCard.setOnClickListener { setupInsertCreditCard() }
     }
 
     private fun setupInsertCreditCard() {
-        creditCard = CreditCard(
+        mCreditCard = CreditCard(
             cardNumber = binding.textInputEditTextCardNumber.toText(),
             bearer = binding.textInputEditTextCardholderName.toText(),
             cvv = binding.textInputEditTextCvv.toTextInt(),
             expiryDate = binding.textInputEditTextDueData.toText()
         )
-
-        SharedPreferences.putStringSharedPref(
-            requireActivity(),
-            getString(R.string.card_number_user_key),
-            creditCard.cardNumber
-        )
-        creditCardViewModel.insertCreditCard(creditCard)
+        insertCreditCard()
+        validateCreditCardToPayment()
     }
 
-    private fun observeInsertCreditCard() {
-        creditCardViewModel.userInserted.observe(viewLifecycleOwner) {
-            if (it) {
-                creditCardViewModel.loadCreditCard(creditCard.cardNumber)
-            }
+    private fun validateCreditCardToPayment() {
+        if (mCreditCard.cardNumber.isNotEmpty()) {
+            redirectPayment()
+        } else {
+            showMessageError()
         }
-        creditCardViewModel.creditCardLiveData.observe(viewLifecycleOwner) {
-            if (it.cardNumber.isNotEmpty()) {
-                redirectPayment()
-            } else {
-                showMessageError()
-            }
-        }
+    }
+
+    private fun insertCreditCard() {
+        SharedPreferences.putObjectSharedPref(requireActivity(), CREDIT_CARD, mCreditCard)
     }
 
     private fun redirectPayment() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
         findNavController().navigate(
             R.id.action_registerCard_to_paymentFragment,
             getBundleToPayment(),
-            options
+            NavigationUtil.options
         )
     }
 
-    private fun getBundleToPayment(): Bundle {
-        val bundle = Bundle()
-        bundle.putParcelable("user", user)
-        bundle.putParcelable("creditCard", creditCard)
-        return bundle
+    private fun getBundleToPayment() = Bundle().apply {
+        putParcelable(USER, mUser)
+        putParcelable(CREDIT_CARD, mCreditCard)
     }
 
     private fun showMessageError() {

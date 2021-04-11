@@ -7,22 +7,23 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import com.picpay.picpaytest.R
 import com.picpay.picpaytest.databinding.FragmentRegisterCardPresentationBinding
 import com.picpay.picpaytest.features.users.model.User
+import com.picpay.picpaytest.utils.Constants.USER
+import com.picpay.picpaytest.utils.NavigationUtil
 import com.picpay.picpaytest.utils.autoCleared
 
 class RegisterCardPresentationFragment : Fragment() {
 
     private var binding: FragmentRegisterCardPresentationBinding by autoCleared()
-    private var user: User? = null
+    private var mUser: User? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        user = arguments?.getParcelable("user")
+        mUser = requireArguments().getParcelable(USER)
         binding = FragmentRegisterCardPresentationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,18 +35,10 @@ class RegisterCardPresentationFragment : Fragment() {
 
     private fun bindListeners() {
         binding.materialButtonRegisterCard.setOnClickListener {
-            val options = navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.slide_out_left
-                    popEnter = R.anim.slide_in_left
-                    popExit = R.anim.slide_out_right
-                }
-            }
             findNavController().navigate(
                 R.id.action_registerCardPresentation_to_registerCard,
-                bundleOf("user" to user),
-                options
+                bundleOf(USER to mUser),
+                NavigationUtil.options
             )
         }
     }

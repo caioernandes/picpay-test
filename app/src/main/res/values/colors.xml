@@ -3,6 +3,9 @@
     <color name="colorPrimary">#1D1E20</color>
     <color name="colorPrimaryDark">#2B2C2F</color>
     <color name="colorPlaceHolder">#ACB1BD</color>
-    <color name="colorAccent">#11C76F</color>
+    <color name="colorAccent">#B211C76F</color>
+    <color name="colorAccentTransparent">#B211C76F</color>
     <color name="textColorDescription">#FFFFFF</color>
+    <color name="colorToolbar">#151516</color>
+    <color name="colorDivisor">#3D4451</color>
 </resources>

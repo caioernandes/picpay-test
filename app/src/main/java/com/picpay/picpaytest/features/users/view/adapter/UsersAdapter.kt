@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.picpay.picpaytest.databinding.ItemUserBinding
+import com.picpay.picpaytest.extensions.setImageFromNetWork
 import com.picpay.picpaytest.features.users.model.User
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,9 +21,9 @@ class UsersAdapter(private val listener: UserItemListener) :
     private var usersListBackup: List<User>? = null
 
     fun setItems(items: ArrayList<User>) {
-        this.usersList.clear()
-        this.usersList.addAll(items)
-        this.usersListBackup = items
+        usersList.clear()
+        usersList.addAll(items)
+        usersListBackup = items
         notifyDataSetChanged()
     }
 
@@ -73,12 +72,11 @@ class UserViewHolder(
 
     fun bind(item: User) {
         this.user = item
-        itemBinding.appCompatTextViewUserNameContact.text = item.userName
-        itemBinding.appCompatTextViewNameContact.text = item.name
-        Glide.with(itemBinding.root)
-            .load(item.image)
-            .transform(CircleCrop())
-            .into(itemBinding.appCompatImageViewAvatarContact)
+        with(itemBinding) {
+            appCompatTextViewUserNameContact.text = item.userName
+            appCompatTextViewNameContact.text = item.name
+            appCompatImageViewAvatarContact.setImageFromNetWork(itemBinding.root, item.image)
+        }
     }
 
     override fun onClick(v: View?) {

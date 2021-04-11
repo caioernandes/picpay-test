@@ -1,14 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.payment.view.PaymentFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageViewAvatarContact"
+        android:layout_width="@dimen/dimensOf52dp"
+        android:layout_height="@dimen/dimensOf52dp"
+        android:layout_marginTop="@dimen/dimensOf12dp"
+        android:layout_marginBottom="@dimen/dimensOf12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewUserNameContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimensOf16dp"
+        android:layout_marginTop="@dimen/dimensOf12dp"
+        android:layout_marginEnd="@dimen/dimensOf16dp"
+        android:ellipsize="end"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimensOf18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/appCompatImageViewAvatarContact"
+        app:layout_constraintStart_toStartOf="@id/appCompatImageViewAvatarContact"
+        app:layout_constraintTop_toBottomOf="@id/appCompatImageViewAvatarContact"
+        tools:text="aliceromero" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/appCompatEditTextPaymentAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimensOf20dp"
+        android:layout_marginTop="@dimen/dimensOf32dp"
+        android:layout_marginEnd="@dimen/dimensOf20dp"
+        android:gravity="center"
+        android:hint="@string/start_value_payment"
+        android:singleLine="true"
+        android:inputType="numberDecimal"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorPlaceHolder"
+        android:textSize="@dimen/dimensOf54sp"
+        app:layout_constraintEnd_toEndOf="@id/appCompatTextViewUserNameContact"
+        app:layout_constraintStart_toStartOf="@id/appCompatTextViewUserNameContact"
+        app:layout_constraintTop_toBottomOf="@id/appCompatTextViewUserNameContact" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewDataCreditCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimensOf32dp"
+        android:ellipsize="end"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimensOf18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/appCompatEditTextPaymentAmount"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="@id/appCompatEditTextPaymentAmount"
+        app:layout_constraintTop_toBottomOf="@id/appCompatEditTextPaymentAmount"
+        tools:text="Mastercard 1234 •" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextViewEditCreditCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimensOf4dp"
+        android:ellipsize="end"
+        android:text="@string/edit_credit_card"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/dimensOf18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextViewDataCreditCard"
+        app:layout_constraintStart_toEndOf="@+id/appCompatTextViewDataCreditCard"
+        app:layout_constraintTop_toTopOf="@+id/appCompatTextViewDataCreditCard" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButtonPayment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_button_height"
+        android:layout_marginStart="@dimen/dimensOf12dp"
+        android:layout_marginEnd="@dimen/dimensOf12dp"
+        android:layout_marginBottom="@dimen/dimensOf12dp"
+        android:text="@string/send_payment"
+        android:theme="@style/MatButton"
+        app:cornerRadius="@dimen/corner_radius_button"
+        android:enabled="false"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

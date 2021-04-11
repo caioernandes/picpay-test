@@ -23,8 +23,8 @@
 
     <fragment
         android:id="@+id/registerCardPresentation"
-        android:label="@string/credit_card"
         android:name="com.picpay.picpaytest.features.creditcard.view.RegisterCardPresentationFragment"
+        android:label="@string/credit_card"
         tools:layout="@layout/fragment_register_card_presentation">
 
         <action
@@ -53,6 +53,12 @@
         <action
             android:id="@+id/action_paymentFragment_to_usersFragment"
             app:destination="@id/usersFragment" />
+        <action
+            android:id="@+id/action_paymentFragment_to_registerCard"
+            app:destination="@id/registerCard"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/usersFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
 

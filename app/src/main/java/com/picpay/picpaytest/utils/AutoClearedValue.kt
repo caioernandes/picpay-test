@@ -1,4 +1,4 @@
-package com.picpay.picpaytest.utils;
+package com.picpay.picpaytest.utils
 /*
  * Copyright (C) 2018 The Android Open Source Project
  *
